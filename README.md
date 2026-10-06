@@ -11,3 +11,24 @@ This project performs an end-to-end exploratory and analytical investigation of 
 * **Database Management System**: MySQL Workbench / SQL
 * **Data Visualization & Dashboarding:** Power BI
 * **Version Control**: GitHub
+### Data Cleaning & Preparation
+Prior to executing business queries, preliminary validation and schema modifications were performed on sales_data:
+* Data Type Casting: Converted order_date from string/text representation into standard DATE format.
+* Granularity Check: Validated total record counts (20,000 unique order_id entries) and distinct customer base (3,985 customer_id entries).
+* Deduplication: Applied SQL Window Functions (ROW_NUMBER() OVER (PARTITION BY ...)) to detect duplicate records across all transactional attributes:
+ALTER TABLE sales_data
+MODIFY COLUMN order_date DATE;
+
+-- Duplicate Verification CTE
+WITH cte_duplicates AS (
+    SELECT *,
+        ROW_NUMBER() OVER(
+            PARTITION BY order_id, order_date, customer_id, gender, age, 
+                         region, city, category, product, unit_price, 
+                         quantity, discount, sales, profit, channel, 
+                         payment_method, rating
+        ) AS row_num
+    FROM sales_data
+)
+SELECT * FROM cte_duplicates
+WHERE row_num > 1;
