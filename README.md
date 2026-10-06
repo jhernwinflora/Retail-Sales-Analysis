@@ -9,5 +9,5 @@ This project performs an end-to-end exploratory and analytical investigation of 
 5. Which product categories and geographic regions are top performers vs. underperformers?
 ### Tools Used
 * **Database Management System**: MySQL Workbench / SQL
-* **Data Visualization & Dashboarding:** Power BI / Tableau / Excel (Include your chosen tool)
-* **Version Control**: Git & GitHub
+* **Data Visualization & Dashboarding:** Power BI
+* **Version Control**: GitHub
