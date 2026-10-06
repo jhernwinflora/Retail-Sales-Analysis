@@ -13,9 +13,16 @@ This project performs an end-to-end exploratory and analytical investigation of 
 * **Version Control**: GitHub
 ### Data Cleaning & Preparation
 Prior to executing business queries, preliminary validation and schema modifications were performed on sales_data:
-* Data Type Casting: Converted order_date from string/text representation into standard DATE format.
-* Granularity Check: Validated total record counts (20,000 unique order_id entries) and distinct customer base (3,985 customer_id entries).
-* Deduplication: Applied SQL Window Functions (ROW_NUMBER() OVER (PARTITION BY ...)) to detect duplicate records across all transactional attributes:
+* **Data Type Casting**: Converted order_date from string/text representation into standard DATE format.
+  ```sql
+  ALTER TABLE sales_data MODIFY COLUMN order_date DATE;
+  ```
+* **Granularity Check**: Validated total record counts (20,000 unique `order_id` entries) and distinct customer base (3,985 `customer_id` entries).
+
+* **Deduplication**: Applied SQL Window Functions (ROW_NUMBER() OVER (PARTITION BY ...)) to detect duplicate records across all transactional attributes:
+
+### Deduplication Verification CTE
+``` sql
 ALTER TABLE sales_data
 MODIFY COLUMN order_date DATE;
 
@@ -32,3 +39,4 @@ WITH cte_duplicates AS (
 )
 SELECT * FROM cte_duplicates
 WHERE row_num > 1;
+```
