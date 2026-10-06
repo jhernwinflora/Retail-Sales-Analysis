@@ -7,7 +7,7 @@ This project performs an end-to-end exploratory and analytical investigation of 
 3. Which specific months demonstrate the highest and lowest revenue across years?
 4. Which individual products drive the most revenue vs. volume, and do high-selling items align with high revenue generators?
 5. Which product categories and geographic regions are top performers vs. underperformers?
-## Tools Used
-**Database Management System**: MySQL Workbench / SQL
-**Data Visualization & Dashboarding:** Power BI / Tableau / Excel (Include your chosen tool)
-**Version Control**: Git & GitHub
+### Tools Used
+* **Database Management System**: MySQL Workbench / SQL
+* **Data Visualization & Dashboarding:** Power BI / Tableau / Excel (Include your chosen tool)
+* **Version Control**: Git & GitHub
