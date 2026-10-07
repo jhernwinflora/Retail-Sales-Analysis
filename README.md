@@ -204,4 +204,22 @@ ORDER BY total_sales DESC;
 #### **1. High-Level Performance Metrics (KPIs)**
 * **Total Revenue**: Generated $222,077,816.75 across 20,000 unique orders placed by 3,985 unique customers (2023–2025).
 * **Units Sold**: 44,814 total units were sold across all categories.
-* **Order Dynamics**: The overall Average Order Value (AOV) was $11,103.89, with an Average Selling Price (ASP) of $4,955.55 per unit.   
+* **Order Dynamics**: The overall Average Order Value (AOV) was $11,103.89, with an Average Selling Price (ASP) of $4,955.55 per unit.
+
+#### **2. Time-Based Trends & Seasonality**
+* **Q4 Peak Sales**: Across all three years, the fourth quarter (specifically October and November) consistently generated the highest monthly revenue, peaking at $10,636,182.95 in November 2025.   
+* **Q1/Q3 Lulls**: Early spring (March/April) and mid-summer (July) frequently experienced drops in performance. For example, July 2024 saw the lowest monthly revenue for that year at $3,930,909.30.   
+* **Growth Volatility**: Month-over-Month (MoM) revenue fluctuates significantly ahead of peak shopping periods, highlighted by a 105.96% spike in October 2023 right before Q4.
+
+#### **3. Product Performance & Revenue vs. Volume**
+* **Top Revenue Drivers**: Laptops generated the highest total revenue by a massive margin at $130,717,019.10, followed by Smartphones ($36,655,612.45) and Smartwatches ($11,482,238.35).   
+* **Top Volume Leaders**: The highest unit sales came from lower-cost accessories—Wireless Earbuds (2,606 units) and Power Banks (2,583 units).
+* **Key Finding (Rank Shift)**: High unit volume does not always equal high revenue. While Wireless Earbuds ranked #1 in units sold, it ranked #6 in revenue. Conversely, Laptops ranked #3 in units sold but dominated as #1 in total revenue due to its higher price point.
+
+#### **4. Category Dominance**
+* **Electronics Heavy**: The Electronics category outperformed all other sectors combined, driving $186,893,726.15 in revenue.
+* **Underperforming Categories**: Books & Stationery ($2,774,971.70) and Beauty ($3,829,043.20) contributed the least to total sales volume.
+
+#### **5. Regional Insights**
+* **South Leads Revenue**: The South region was the top-performing territory, generating $70,069,874.35 in total sales.
+* **East Lags Behind**: The East region recorded the lowest total sales at $36,887,909.60, lagging significantly behind the South, North ($58.18M), and West ($56.94M) markets.  
