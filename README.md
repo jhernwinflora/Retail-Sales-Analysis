@@ -199,6 +199,12 @@ FROM sales_data
 GROUP BY region
 ORDER BY total_sales DESC;
 ```
+## 📊 Power BI Interactive Dashboard
+
+![Uploading image.png…]()
+
+
+
 ### 📊 Key Insights & Analytical Findings
 
 #### **1. High-Level Performance Metrics (KPIs)**
