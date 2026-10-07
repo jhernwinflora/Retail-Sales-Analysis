@@ -201,9 +201,7 @@ ORDER BY total_sales DESC;
 ```
 ## 📊 Power BI Interactive Dashboard
 
-![Uploading image.png…]()
-
-
+![Power BI Dashboard Preview]<img width="911" height="543" alt="image" src="https://github.com/user-attachments/assets/d21a58c4-e1ac-4cbc-84f6-eb4c0356536d" />
 
 ### 📊 Key Insights & Analytical Findings
 
