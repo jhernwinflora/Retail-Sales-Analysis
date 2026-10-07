@@ -199,4 +199,9 @@ FROM sales_data
 GROUP BY region
 ORDER BY total_sales DESC;
 ```
+### 📊 Key Insights & Analytical Findings
 
+#### **1. High-Level Performance Metrics (KPIs)**
+* **Total Revenue**: Generated $222,077,816.75 across 20,000 unique orders placed by 3,985 unique customers (2023–2025).
+* **Units Sold**: 44,814 total units were sold across all categories.
+* **Order Dynamics**: The overall Average Order Value (AOV) was $11,103.89, with an Average Selling Price (ASP) of $4,955.55 per unit.   
