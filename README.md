@@ -7,7 +7,7 @@ This data analysis project aims to provide insights into the sales performance o
 ### Data Source
 
 Primary Dataset: retail_sales.csv
-The dataset comprises granular transaction records capturing individual retail sales from 2023 through 2025. Key attributes include 'order_id',	'order_date',	'customer_id',	'gender',	'age',	'region',	'city',	'category',	'product',	'unit_price',	'quantity',	'discount',	'sales',	'profit',	'channel',	'payment_method',	'rating'.
+The dataset comprises granular transaction records capturing individual retail sales from 2023 through 2025. Key attributes include order details (order_id, order_date), customer demographics (customer_id, gender, age), geographic metrics (region, city), product catalog details (category, product), financial metrics (unit_price, quantity, discount, sales, profit), and operational fields (channel, payment_method, rating).
 
 
 ### Business Questions
