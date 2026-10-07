@@ -248,4 +248,7 @@ An interactive dashboard built in Power BI to visualize overall sales performanc
 
 #### **4. Regional Expansion & Targeted Marketing**
 * **Recommendation**: Replicate successful sales playbooks from the top-performing South region ($70.07M) into the North ($58.18M) and West ($56.94M) regions. Perform a market penetration study in the East region ($36.89M) to address root causes of regional underperformance.
-* **Expected Impact**: Unlocks untapped demand in lagging territories while sustaining growth momentum in proven high-performing markets. 
+* **Expected Impact**: Unlocks untapped demand in lagging territories while sustaining growth momentum in proven high-performing markets.
+
+## **Author - Jhernwin E. Flora**
+This project is part of my portfolio, showcasing my skills essential for data analyst roles. 
