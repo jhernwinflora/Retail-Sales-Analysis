@@ -200,8 +200,11 @@ GROUP BY region
 ORDER BY total_sales DESC;
 ```
 ## 📊 Power BI Interactive Dashboard
+An interactive dashboard built in Power BI to visualize overall sales performance, track core business KPIs, and uncover seasonal trends and regional growth drivers across the dataset.
 
-![Power BI Dashboard Preview]<img width="911" height="543" alt="image" src="https://github.com/user-attachments/assets/d21a58c4-e1ac-4cbc-84f6-eb4c0356536d" />
+<img width="911" height="543" alt="image" src="https://github.com/user-attachments/assets/d21a58c4-e1ac-4cbc-84f6-eb4c0356536d" />
+
+> 🔗 **Power BI File:** [Download the retail_sales.pbix report](./retail_sales.pbix)
 
 ### 📊 Key Insights & Analytical Findings
 
