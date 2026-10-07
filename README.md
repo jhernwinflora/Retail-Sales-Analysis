@@ -31,9 +31,10 @@ SET order_date = STR_TO_DATE(order_date, "%m/%d/%Y");
 ALTER TABLE sales_data
 MODIFY COLUMN order_date DATE;
 ```
+
 2. Dataset Overview & Duplicate Check
 Validated record counts, unique entities, timeframes, and duplicate rows across all dimensions:
-```
+```sql
 -- Check total unique orders and customers
 SELECT COUNT(DISTINCT order_id) AS total_unique_orders FROM sales_data; -- 20,000 unique orders
 SELECT COUNT(DISTINCT customer_id) AS total_unique_customers FROM sales_data; -- 3,985 unique customers
@@ -56,3 +57,5 @@ WITH cte_duplicates AS (
 )
 SELECT * FROM cte_duplicates WHERE row_num > 1;
 ```
+
+3. 
