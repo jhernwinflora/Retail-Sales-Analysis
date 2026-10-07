@@ -22,7 +22,7 @@ This project utilizes MySQL Workbench to perform end-to-end data processing, exp
 
 1. Data Cleaning & Schema Transformation
 Standardized string formatted dates into ISO DATE types and altered column attributes for accurate time-series analysis:
-```
+```sql
 -- Convert string date values to standard DATE format
 UPDATE sales_data
 SET order_date = STR_TO_DATE(order_date, "%m/%d/%Y");
