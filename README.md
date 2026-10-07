@@ -20,7 +20,37 @@ The dataset comprises granular transaction records capturing individual retail s
 
 This project utilizes MySQL Workbench to perform end-to-end data processing, exploratory analysis, and key performance indicator (KPI) calculations. Below is the breakdown of the SQL workflows executed on retail_sales_data:
 
-1. Data Cleaning & Schema Transformation
+1. Database Setup, Schema
+Initial setup involves creating the database, defining the staging table schema for raw data ingestion, standardizing date strings, and updating column data types:
+```sql
+-- Database and Table Initialization
+CREATE DATABASE retail_sales_data;
+USE retail_sales_data;
+
+DROP TABLE IF EXISTS sales_data;
+CREATE TABLE sales_data
+(
+    order_id        TEXT,
+    order_date      TEXT,
+    customer_id     TEXT,
+    gender          TEXT,
+    age             TEXT,
+    region          TEXT,
+    city            TEXT,
+    category        TEXT,
+    product         TEXT,
+    unit_price      INT,
+    quantity        INT,
+    discount        FLOAT,
+    sales           DECIMAL(10,2),
+    profit          DECIMAL(10,2),
+    channel         TEXT,
+    payment_method  TEXT,	
+    rating          INT
+);
+```
+
+2. Data Cleaning & Schema Transformation
 Standardized string formatted dates into ISO DATE types and altered column attributes for accurate time-series analysis:
 ```sql
 -- Convert string date values to standard DATE format
@@ -32,7 +62,7 @@ ALTER TABLE sales_data
 MODIFY COLUMN order_date DATE;
 ```
 
-2. Dataset Overview & Duplicate Check
+3. Dataset Overview & Duplicate Check
 Validated record counts, unique entities, timeframes, and duplicate rows across all dimensions:
 ```sql
 -- Check total unique orders and customers
@@ -58,4 +88,115 @@ WITH cte_duplicates AS (
 SELECT * FROM cte_duplicates WHERE row_num > 1;
 ```
 
-3. 
+3. Core Key Performance Indicators (KPIs)
+Calculated foundational business metrics, including aggregate revenue, volume, and order-level averages:
+```sql
+-- Total Sales
+SELECT SUM(sales) AS total_sales FROM sales_data;
+
+-- Total Orders & Total Units Sold
+SELECT COUNT(DISTINCT order_id) AS total_orders FROM sales_data;
+SELECT SUM(quantity) AS total_units_sold FROM sales_data;
+
+-- Average Order Value (AOV)
+WITH cte AS (
+    SELECT 
+        SUM(sales) AS total_sales,
+        COUNT(DISTINCT order_id) AS total_orders
+    FROM sales_data
+)
+SELECT ROUND(total_sales / total_orders, 2) AS avg_order_value FROM cte;
+
+-- Average Selling Price (ASP)
+WITH cte AS (
+    SELECT 
+        SUM(sales) AS total_sales,
+        SUM(quantity) AS total_units_sold
+    FROM sales_data
+)
+SELECT ROUND(total_sales / total_units_sold, 2) AS avg_selling_price FROM cte;
+```
+
+4. Time-Series & Trend Analysis
+Identified monthly performance highlights, worst-performing periods, and Month-over-Month (MoM) growth trajectory using window functions:
+```sql
+-- Top & bottom performing months per year
+SELECT
+    YEAR(order_date) AS year,
+    MONTHNAME(order_date) AS monthname,
+    SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY year, monthname
+ORDER BY year ASC, total_sales DESC;
+
+SELECT
+    YEAR(order_date) AS year,
+    MONTHNAME(order_date) AS monthname,
+    SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY year, monthname
+ORDER BY year ASC, total_sales ASC;
+
+-- Month-over-Month (MoM) Growth Analysis
+WITH year_month_sales AS
+(
+    SELECT
+        YEAR(order_date) AS year,
+        MONTH(order_date) AS month_num,
+        MONTHNAME(order_date) AS monthname,
+        SUM(sales) AS monthly_sales
+    FROM sales_data
+    GROUP BY year, month_num, monthname
+)
+SELECT
+    year,
+    month_num,
+    monthname,
+    monthly_sales,
+    LAG(monthly_sales, 1) OVER(ORDER BY year ASC, month_num ASC) AS prev_monthly_sales,
+    ROUND(monthly_sales - LAG(monthly_sales, 1) OVER(ORDER BY year ASC, month_num ASC)) AS month_over_month_growth,
+    ROUND((monthly_sales -LAG(monthly_sales, 1) OVER(ORDER BY year ASC, month_num ASC)) 
+    / LAG(monthly_sales, 1) OVER(ORDER BY year ASC, month_num ASC) * 100,2) AS month_over_month_growth_pct
+FROM year_month_sales
+ORDER BY year ASC, month_num ASC, monthname;
+```
+5. Product & Category Breakdown
+Evaluated top/bottom categories and ranked products by volume versus revenue to identify high-value drivers:
+```sql
+-- Which category generates the most revenue?
+SELECT
+    category,
+    SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY category
+ORDER BY total_sales DESC;
+
+-- Are the highest-selling products also the highest-revenue products?
+WITH cte AS
+(
+    SELECT
+        product,
+        SUM(quantity) AS total_units_sold,
+        SUM(sales) AS total_sales
+    FROM sales_data
+    GROUP BY product
+)
+SELECT
+    product,
+    total_units_sold,
+    total_sales,
+    DENSE_RANK() OVER(ORDER BY total_units_sold DESC) AS unit_rank,
+    DENSE_RANK() OVER(ORDER BY total_sales DESC) AS revenue_rank
+FROM cte
+ORDER BY unit_rank ASC;
+```
+6. Geographic Distribution
+Mapped geographic distribution to pinpoint high-growth regional hubs and underperforming markets:
+```sql
+-- Regional Performance Overview
+SELECT region, SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY region
+ORDER BY total_sales DESC;
+```
+
