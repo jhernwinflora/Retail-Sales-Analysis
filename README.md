@@ -206,6 +206,7 @@ An interactive dashboard built in Power BI to visualize overall sales performanc
 
 > 🔗 **Power BI File:** [Download the retail_sales.pbix report](./retail_sales.pbix)
 
+
 ### 📊 Key Insights & Analytical Findings
 
 #### **1. High-Level Performance Metrics (KPIs)**
