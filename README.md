@@ -48,6 +48,15 @@ CREATE TABLE sales_data
     payment_method  TEXT,	
     rating          INT
 );
+
+SET GLOBAL local_infile = 1;
+
+LOAD DATA LOCAL INFILE 'C:/Users/jhern/OneDrive/Documents/JJ/SQL + POWERBI/REAL/India Retail Store/retail_sales_data.csv'
+INTO TABLE sales_data
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES; -- Use this line to skip the CSV header row
 ```
 
 2. Data Cleaning & Schema Transformation
